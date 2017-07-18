@@ -10,4 +10,11 @@
 
 @implementation KonoViewerKit
 
+- (void)testingSDK {
+    
+    NSLog(@"Here is Kono viewer SDK integration testing!");
+    
+}
+
+
 @end
