@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "KonoViewerKit"
-  s.version      = "0.1"
+  s.version      = "0.2"
   s.summary      = "Viewer SDK based on Kono AYCR project."
 
   # This description is used to generate tags and improve search results.
@@ -37,8 +37,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+   s.license      = { :type => "MIT", :file => "LICENSE" }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -78,7 +77,8 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/theKono/ios-KonoViewer.git", :tag => "0.1" }
+#s.source       = { :git => "https://github.com/theKono/ios-KonoViewer.git" }
+  s.source       = { :git => "https://github.com/theKono/ios-KonoViewer.git", :tag => "0.2" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -89,8 +89,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
+  s.source_files  = "KonoViewerKit/**/*.{h,m}"
+  s.exclude_files = "KonoViewerKit/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
