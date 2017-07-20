@@ -34,7 +34,7 @@
 		E83AA8551F1DCCF500D44997 /* KEFatPageWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KEFatPageWebView.m; sourceTree = "<group>"; };
 		E83AA8561F1DCCF500D44997 /* KEPageWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KEPageWebView.h; sourceTree = "<group>"; };
 		E83AA8571F1DCCF500D44997 /* KEPageWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KEPageWebView.m; sourceTree = "<group>"; };
-		E83AA85D1F1F19C600D44997 /* Resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resource; sourceTree = "<group>"; };
+		E83AA85D1F1F19C600D44997 /* Resource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resource; path = KonoViewerKit/Resource; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +51,7 @@
 		E83AA83E1F1DAB3400D44997 = {
 			isa = PBXGroup;
 			children = (
+				E83AA85D1F1F19C600D44997 /* Resource */,
 				E83AA8491F1DAB3400D44997 /* KonoViewerKit */,
 				E83AA8481F1DAB3400D44997 /* Products */,
 			);
@@ -67,7 +68,6 @@
 		E83AA8491F1DAB3400D44997 /* KonoViewerKit */ = {
 			isa = PBXGroup;
 			children = (
-				E83AA85D1F1F19C600D44997 /* Resource */,
 				E83AA8531F1DCC2E00D44997 /* BasicComponent */,
 				E83AA84A1F1DAB3400D44997 /* KonoViewerKit.h */,
 				E83AA84B1F1DAB3400D44997 /* KonoViewerKit.m */,
