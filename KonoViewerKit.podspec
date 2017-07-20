@@ -78,8 +78,7 @@ Pod::Spec.new do |s|
   #
 
 #s.source       = { :git => "https://github.com/theKono/ios-KonoViewer.git" }
-  s.source       = { :git => "https://github.com/theKono/ios-KonoViewer.git", :tag => "0.2" }
-
+  s.source       = { :git => "https://github.com/theKono/ios-KonoViewer.git", :branch => "development" }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -104,8 +103,8 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-   s.resources = "KonoViewerKit/**/*.{html,css,js,xib}"
-
+  #s.resources = "KonoViewerKit/**/*.{html,css,js,xib}"
+  s.resource_bundles = { "KonoViewerKit" => "KonoViewerKit/Resource/*"} 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
 
