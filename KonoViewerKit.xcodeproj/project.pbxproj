@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		E83AA84C1F1DAB3400D44997 /* KonoViewerKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E83AA84B1F1DAB3400D44997 /* KonoViewerKit.m */; };
 		E83AA84D1F1DAB3400D44997 /* KonoViewerKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E83AA84A1F1DAB3400D44997 /* KonoViewerKit.h */; };
-		E83AA8581F1DCCF500D44997 /* KEFatPageWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E83AA8551F1DCCF500D44997 /* KEFatPageWebView.m */; };
-		E83AA8591F1DCCF500D44997 /* KEPageWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E83AA8571F1DCCF500D44997 /* KEPageWebView.m */; };
+		E83AA87A1F25F60200D44997 /* KonoPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83AA8781F25F60200D44997 /* KonoPDFViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,11 +29,10 @@
 		E83AA8471F1DAB3400D44997 /* libKonoViewerKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKonoViewerKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E83AA84A1F1DAB3400D44997 /* KonoViewerKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KonoViewerKit.h; sourceTree = "<group>"; };
 		E83AA84B1F1DAB3400D44997 /* KonoViewerKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KonoViewerKit.m; sourceTree = "<group>"; };
-		E83AA8541F1DCCF500D44997 /* KEFatPageWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KEFatPageWebView.h; sourceTree = "<group>"; };
-		E83AA8551F1DCCF500D44997 /* KEFatPageWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KEFatPageWebView.m; sourceTree = "<group>"; };
-		E83AA8561F1DCCF500D44997 /* KEPageWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KEPageWebView.h; sourceTree = "<group>"; };
-		E83AA8571F1DCCF500D44997 /* KEPageWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KEPageWebView.m; sourceTree = "<group>"; };
 		E83AA85D1F1F19C600D44997 /* Resource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resource; path = KonoViewerKit/Resource; sourceTree = "<group>"; };
+		E83AA8771F25F60200D44997 /* KonoPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonoPDFViewController.h; sourceTree = "<group>"; };
+		E83AA8781F25F60200D44997 /* KonoPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KonoPDFViewController.m; sourceTree = "<group>"; };
+		E83AA8791F25F60200D44997 /* KonoPDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KonoPDFViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +68,9 @@
 			children = (
 				E83AA8531F1DCC2E00D44997 /* BasicComponent */,
 				E83AA84A1F1DAB3400D44997 /* KonoViewerKit.h */,
+				E83AA8771F25F60200D44997 /* KonoPDFViewController.h */,
+				E83AA8781F25F60200D44997 /* KonoPDFViewController.m */,
+				E83AA8791F25F60200D44997 /* KonoPDFViewController.xib */,
 				E83AA84B1F1DAB3400D44997 /* KonoViewerKit.m */,
 			);
 			path = KonoViewerKit;
@@ -78,10 +79,6 @@
 		E83AA8531F1DCC2E00D44997 /* BasicComponent */ = {
 			isa = PBXGroup;
 			children = (
-				E83AA8541F1DCCF500D44997 /* KEFatPageWebView.h */,
-				E83AA8551F1DCCF500D44997 /* KEFatPageWebView.m */,
-				E83AA8561F1DCCF500D44997 /* KEPageWebView.h */,
-				E83AA8571F1DCCF500D44997 /* KEPageWebView.m */,
 			);
 			name = BasicComponent;
 			sourceTree = "<group>";
@@ -144,8 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E83AA8581F1DCCF500D44997 /* KEFatPageWebView.m in Sources */,
-				E83AA8591F1DCCF500D44997 /* KEPageWebView.m in Sources */,
+				E83AA87A1F25F60200D44997 /* KonoPDFViewController.m in Sources */,
 				E83AA84C1F1DAB3400D44997 /* KonoViewerKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,6 +278,7 @@
 				E83AA8521F1DAB3400D44997 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
