@@ -11,4 +11,6 @@
 
 @interface KonoPDFViewController : UIViewController
 
+@property (nonatomic, strong) KCBook *book;
+
 @end

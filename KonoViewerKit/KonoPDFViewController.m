@@ -9,6 +9,7 @@
 #import "KonoPDFViewController.h"
 
 @interface KonoPDFViewController ()
+@property (unsafe_unretained, nonatomic) IBOutlet UILabel *magazineTitle;
 
 @end
 
@@ -17,6 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    [self.magazineTitle setText:self.book.name];
+    
 }
 
 - (void)didReceiveMemoryWarning {
