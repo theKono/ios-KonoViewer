@@ -23,10 +23,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)testBtnPressed:(id)sender {
-    
-    NSLog(@"test!!");
-}
+
 
 /*
 #pragma mark - Navigation

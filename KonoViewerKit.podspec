@@ -91,7 +91,7 @@ Pod::Spec.new do |s|
   s.source_files  = "KonoViewerKit/**/*.{h,m}"
   s.exclude_files = "KonoViewerKit/Exclude"
 
-  # s.public_header_files = "Classes/**/*.h"
+  s.public_header_files = "KonoViewerKit/**/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -117,8 +117,10 @@ Pod::Spec.new do |s|
 
   # s.framework  = "SomeFramework"
   # s.frameworks = "SomeFramework", "AnotherFramework"
-
-  # s.library   = "iconv"
+  s.ios.vendored_frameworks = 'KonoViewerKit/KonoContentKit.framework' 
+#s.framework = 'KonoContentKit'
+#s.xcconfig = {'FRAMEWORK_SEARCH_PATHS' => '/Applications/Xcode.app/Contents/Developer/Library/Frameworks'}
+   s.library   = 'z'
   # s.libraries = "iconv", "xml2"
 
 

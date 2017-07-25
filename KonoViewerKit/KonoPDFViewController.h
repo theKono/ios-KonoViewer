@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <KonoContentKit/KonoContentKit.h>
 
 @interface KonoPDFViewController : UIViewController
 
