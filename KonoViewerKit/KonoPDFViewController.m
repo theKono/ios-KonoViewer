@@ -16,6 +16,7 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
 @interface KonoPDFViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (unsafe_unretained, nonatomic) IBOutlet UICollectionView *viewContainer;
+@property (unsafe_unretained, nonatomic) IBOutlet UIView *navigationView;
 
 @end
 
@@ -37,6 +38,7 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
 - (void)viewDidLayoutSubviews {
     
     [self initViewContainer];
+    [self initLayout];
     
 }
 
@@ -67,6 +69,12 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     [self.viewContainer setBackgroundColor:[UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1.0]];
     [self.viewContainer registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:contentCellIdentifier];
     
+    
+}
+
+- (void)initLayout {
+    
+    self.navigationView.frame = CGRectMake( 0, 0, self.view.frame.size.width, 49 );
     
 }
 
@@ -175,5 +183,15 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     }];
     
 }
+
+#pragma mark - navigation button handler
+
+- (IBAction)closeBtnPressed:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+
 
 @end
