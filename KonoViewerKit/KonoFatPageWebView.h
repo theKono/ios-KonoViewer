@@ -30,7 +30,7 @@
 @property (nonatomic) NSInteger pageNum;
 @property (nonatomic) BOOL isReadyToShow;
 
-@property (nonatomic, strong) id<KonoFatPageWebViewDelegate> pageDelegate;
+@property (nonatomic, weak) id<KonoFatPageWebViewDelegate> pageDelegate;
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
 

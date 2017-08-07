@@ -13,6 +13,7 @@
 		E83AA8811F27337F00D44997 /* KonoFatPageWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E83AA87E1F27337F00D44997 /* KonoFatPageWebView.m */; };
 		E83AA8821F27337F00D44997 /* KonoPageWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E83AA8801F27337F00D44997 /* KonoPageWebView.m */; };
 		E83AA8891F273FF600D44997 /* KonoContentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83AA8881F273FF600D44997 /* KonoContentKit.framework */; };
+		E8E901201F3869AA006EDCF5 /* KonoPDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E9011F1F3869AA006EDCF5 /* KonoPDFView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +43,9 @@
 		E83AA8801F27337F00D44997 /* KonoPageWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KonoPageWebView.m; sourceTree = "<group>"; };
 		E83AA8881F273FF600D44997 /* KonoContentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KonoContentKit.framework; path = KonoViewerKit/KonoContentKit.framework; sourceTree = "<group>"; };
 		E83AA88B1F27460800D44997 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		E8E9011E1F3869AA006EDCF5 /* KonoPDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonoPDFView.h; sourceTree = "<group>"; };
+		E8E9011F1F3869AA006EDCF5 /* KonoPDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KonoPDFView.m; sourceTree = "<group>"; };
+		E8E901211F3879A9006EDCF5 /* KonoPDFView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KonoPDFView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,9 @@
 			isa = PBXGroup;
 			children = (
 				E83AA8531F1DCC2E00D44997 /* BasicComponent */,
+				E8E9011E1F3869AA006EDCF5 /* KonoPDFView.h */,
+				E8E9011F1F3869AA006EDCF5 /* KonoPDFView.m */,
+				E8E901211F3879A9006EDCF5 /* KonoPDFView.xib */,
 				E83AA8771F25F60200D44997 /* KonoPDFViewController.h */,
 				E83AA8781F25F60200D44997 /* KonoPDFViewController.m */,
 				E83AA8791F25F60200D44997 /* KonoPDFViewController.xib */,
@@ -167,6 +174,7 @@
 			files = (
 				E83AA8811F27337F00D44997 /* KonoFatPageWebView.m in Sources */,
 				E83AA8821F27337F00D44997 /* KonoPageWebView.m in Sources */,
+				E8E901201F3869AA006EDCF5 /* KonoPDFView.m in Sources */,
 				E83AA87A1F25F60200D44997 /* KonoPDFViewController.m in Sources */,
 				E83AA84C1F1DAB3400D44997 /* KonoViewerKit.m in Sources */,
 			);
