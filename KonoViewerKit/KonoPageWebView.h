@@ -51,4 +51,6 @@
 
 - (void)setContentFitScreenSize;
 
+- (void)clearContent;
+
 @end

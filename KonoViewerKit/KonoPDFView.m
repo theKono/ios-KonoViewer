@@ -10,6 +10,7 @@
 #import "KonoPageWebView.h"
 #import "KonoFatPageWebView.h"
 
+static int webViewObjMaxCount = 10;
 
 static NSString *contentCellIdentifier = @"contentCellIdentifier";
 
@@ -83,12 +84,13 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
 
 - (KonoPageWebView *)getResuableWebviewForIndex:(NSInteger)index {
     
+    NSInteger serialNum = index % webViewObjMaxCount;
     
-    KonoPageWebView *webViewObj = [webviewDictionary objectForKey:[NSString stringWithFormat:@"%d",(int)index]];
+    KonoPageWebView *webViewObj = [webviewDictionary objectForKey:[NSString stringWithFormat:@"%d",(int)serialNum]];
     if( nil == webViewObj) {
         
         webViewObj = [self createWebView];
-        [webviewDictionary setObject:webViewObj forKey:[NSString stringWithFormat:@"%d",(int)index]];
+        [webviewDictionary setObject:webViewObj forKey:[NSString stringWithFormat:@"%d",(int)serialNum]];
     }
     
     return webViewObj;
@@ -148,15 +150,19 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     [cell.contentView addSubview:webview];
     webview.alpha = 0;
     
-    KCBookPage *firstPage = [self.book.pageMappingArray objectAtIndex:0];
-    NSString *filePath = [firstPage.htmlFilePath stringByAppendingPathComponent:@"index.html"];
-    [self loadHTMLFileWithWebview:webview withHTMLFilePath:filePath];
+    NSString *filePath = [self.dataSource htmlFilePathForItemAtIndex:indexPath.row isPreload:NO];
+    if (filePath) {
+        [self loadHTMLFileWithWebview:webview withHTMLFileDirPath:filePath];
+    }
+    else {
+        [webview clearContent];
+    }
     return cell;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return [self.book.pageMappingArray count];
+    return [self.dataSource numberOfPages];
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
@@ -169,33 +175,30 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    [self preloadWithCenterIndex:indexPath.row];
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
 
 #pragma mark - content operating related function
 
-- (void)loadHTMLFileWithWebview:(KonoPageWebView *)webview withHTMLFilePath:(NSString *)mergeFilePath{
+- (void)loadHTMLFileWithWebview:(KonoPageWebView *)webview withHTMLFileDirPath:(NSString *)htmlFileDirPath{
     
-    if( [mergeFilePath isEqualToString:webview.cacheKey] ){
+    NSString *indexFilePath = [htmlFileDirPath stringByAppendingPathComponent:@"index.html"];
+    
+    if( [indexFilePath isEqualToString:webview.cacheKey] ){
         
         webview.alpha = 1;
         return;
     }
     
-    
     webview.alpha = 0;
     webview.cacheKey = nil;
     
-    [webview stopLoading];
-    [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+    [webview clearContent];
     
     
-    NSURL *url = [NSURL fileURLWithPath:mergeFilePath];
-    NSString *directory = [mergeFilePath stringByDeletingLastPathComponent];
+    NSURL *url = [NSURL fileURLWithPath:indexFilePath];
+    NSString *directory = [indexFilePath stringByDeletingLastPathComponent];
     NSURL *dir_url = [NSURL fileURLWithPath:directory isDirectory:YES];
     
     __weak KonoPageWebView *weakOperator = webview;
@@ -203,7 +206,7 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     [webview loadFileURL:url allowingReadAccessToURL:dir_url withComplete:^{
         weakOperator.isReadyToShow = YES;
         weakOperator.alpha = 1;
-        weakOperator.cacheKey = mergeFilePath;
+        weakOperator.cacheKey = indexFilePath;
         
     } withFail:^(NSError *error) {
         NSLog(@"fail :%@" , error );
@@ -211,6 +214,50 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     
 }
 
+- (void)preloadWithCenterIndex:(NSInteger)index {
+    
+    NSInteger leftIndex = MAX( 0, index-1 );
+    NSInteger rightIndex = MIN( [self.dataSource numberOfPages] - 1, index+1 );
+    
+    KonoPageWebView *leftWebview = [self getResuableWebviewForIndex:leftIndex];
+    NSString *leftFilePath = [self.dataSource htmlFilePathForItemAtIndex:leftIndex isPreload:YES];
+    if (leftFilePath) {
+        [self loadHTMLFileWithWebview:leftWebview withHTMLFileDirPath:leftFilePath];
+    }
+    
+    KonoPageWebView *rightWebview = [self getResuableWebviewForIndex:rightIndex];
+    NSString *rightFilePath = [self.dataSource htmlFilePathForItemAtIndex:rightIndex isPreload:YES];
+    if (rightFilePath) {
+        [self loadHTMLFileWithWebview:rightWebview withHTMLFileDirPath:rightFilePath];
+    }
+    
+}
+
+- (void)reloadPageIndex:(NSInteger)index withFilePath:(NSString *)htmlFilePath; {
+    
+    KonoPageWebView *webview = [self getResuableWebviewForIndex:index];
+    [self loadHTMLFileWithWebview:webview withHTMLFileDirPath:htmlFilePath];
+    
+}
+
+#pragma mark - webview touch related delegate function
+
+- (void)userDidSingleTapOnView:(KonoPageWebView*)view {
+    NSLog(@"single tap on view");
+}
+
+- (void)userStartOperationOnView {
+    NSLog(@"user touch the webview");
+}
+
+- (void)userDoneOperationOnView {
+    NSLog(@"the webivew action is done");
+    
+}
+
+- (void)userClickInViewWithURL:(NSURL *)url {
+    NSLog(@"user click the URL inside webview");
+}
 
 
 @end
