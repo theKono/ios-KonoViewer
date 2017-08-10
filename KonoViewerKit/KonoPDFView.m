@@ -72,7 +72,7 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     [self.viewContainer setDataSource:self];
     [self.viewContainer setBackgroundColor:[UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1.0]];
     [self.viewContainer registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:contentCellIdentifier];
-    
+    [self.viewContainer setBackgroundColor:[UIColor colorWithRed:0.933 green:0.914 blue:0.878 alpha:1.0]];
 }
 
 - (void)initLayout {
@@ -90,6 +90,7 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     if( nil == webViewObj) {
         
         webViewObj = [self createWebView];
+        webViewObj.serialIdx = serialNum;
         [webviewDictionary setObject:webViewObj forKey:[NSString stringWithFormat:@"%d",(int)serialNum]];
     }
     
@@ -116,7 +117,7 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     configuration.userContentController = userContentController;
     
     KonoPageWebView *webview = [[KonoPageWebView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) configuration:configuration];
-    webview.backgroundColor = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1.0];
+    webview.backgroundColor = [UIColor colorWithRed:0.933 green:0.914 blue:0.878 alpha:1.0];
     webview.pageDelegate = self;
     webview.scrollView.delegate = self;
     webview.scrollView.bounces = NO;
@@ -140,23 +141,26 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     
     UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:contentCellIdentifier forIndexPath:indexPath];
     
-    for( UIView *view in cell.contentView.subviews ){
-        if( [view isKindOfClass:[KonoPageWebView class]] ){
-            
-            [view removeFromSuperview];
-        }
-    }
-    KonoPageWebView *webview = [self getResuableWebviewForIndex:indexPath.row];
-    [cell.contentView addSubview:webview];
-    webview.alpha = 0;
-    
-    NSString *filePath = [self.dataSource htmlFilePathForItemAtIndex:indexPath.row isPreload:NO];
-    if (filePath) {
-        [self loadHTMLFileWithWebview:webview withHTMLFileDirPath:filePath];
+    KonoPageWebView *webview = [cell viewWithTag:99];
+    if (nil == webview) {
+        webview = [self getResuableWebviewForIndex:indexPath.row];
+        webview.tag = 99;
+        [cell.contentView addSubview:webview];
     }
     else {
-        [webview clearContent];
+        
+        if (webview.serialIdx != (indexPath.row % webViewObjMaxCount) ) {
+            [webview removeFromSuperview];
+            KonoPageWebView *newWebview = [self getResuableWebviewForIndex:indexPath.row];
+            newWebview.tag = 99;
+            [cell.contentView addSubview:newWebview];
+        }
     }
+    
+    
+    [self.dataSource htmlFilePathForItemAtIndex:indexPath.row isPreload:NO];
+
+    
     return cell;
 }
 
@@ -175,7 +179,22 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    [self preloadWithCenterIndex:indexPath.row];
+    KonoPageWebView *webview = [self getResuableWebviewForIndex:indexPath.row];
+    
+    
+    NSString *filePath = [self.dataSource htmlFilePathForItemAtIndex:indexPath.row isPreload:NO];
+    
+    if (filePath) {
+        [self loadHTMLFileWithWebview:webview withHTMLFileDirPath:filePath];
+    }
+    
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(nonnull UICollectionViewCell *)cell forItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    KonoPageWebView *webview = [self getResuableWebviewForIndex:indexPath.row];
+    webview.alpha = 0;
+    [self clearCacheWithCenter:indexPath.row];
 }
 
 
@@ -193,8 +212,6 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     
     webview.alpha = 0;
     webview.cacheKey = nil;
-    
-    [webview clearContent];
     
     
     NSURL *url = [NSURL fileURLWithPath:indexFilePath];
@@ -221,13 +238,13 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     
     KonoPageWebView *leftWebview = [self getResuableWebviewForIndex:leftIndex];
     NSString *leftFilePath = [self.dataSource htmlFilePathForItemAtIndex:leftIndex isPreload:YES];
-    if (leftFilePath) {
+    if (leftFilePath && leftIndex != index ) {
         [self loadHTMLFileWithWebview:leftWebview withHTMLFileDirPath:leftFilePath];
     }
     
     KonoPageWebView *rightWebview = [self getResuableWebviewForIndex:rightIndex];
     NSString *rightFilePath = [self.dataSource htmlFilePathForItemAtIndex:rightIndex isPreload:YES];
-    if (rightFilePath) {
+    if (rightFilePath && rightIndex != index) {
         [self loadHTMLFileWithWebview:rightWebview withHTMLFileDirPath:rightFilePath];
     }
     
@@ -237,6 +254,35 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     
     KonoPageWebView *webview = [self getResuableWebviewForIndex:index];
     [self loadHTMLFileWithWebview:webview withHTMLFileDirPath:htmlFilePath];
+    
+}
+
+- (void)clearCacheWithCenter:(NSInteger)index {
+    
+    NSInteger rightIndex = (index + (webViewObjMaxCount / 2)) % webViewObjMaxCount;
+    NSInteger leftIndex = (index + (webViewObjMaxCount / 2) + 1) % webViewObjMaxCount;
+    
+    
+    KonoPageWebView *rightWebview = [self getResuableWebviewForIndex:rightIndex];
+    rightWebview.cacheKey = nil;
+    [rightWebview clearContent];
+    
+    KonoPageWebView *leftWebview = [self getResuableWebviewForIndex:leftIndex];
+    leftWebview.cacheKey = nil;
+    [leftWebview clearContent];
+    
+    
+}
+
+#pragma mark - web scroll view delegate
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    
+    
+    UICollectionViewCell *cell = [[self.viewContainer visibleCells] firstObject];
+    NSIndexPath *indexPath = [self.viewContainer indexPathForCell:cell];
+    
+    [self preloadWithCenterIndex:indexPath.row];
     
 }
 

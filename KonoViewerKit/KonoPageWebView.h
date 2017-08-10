@@ -28,7 +28,7 @@
 
 @interface KonoPageWebView : WKWebView<WKNavigationDelegate, WKUIDelegate, UIGestureRecognizerDelegate,UIScrollViewDelegate>
 
-@property (nonatomic) NSInteger pageNum;
+@property (nonatomic) NSInteger serialIdx;
 @property (nonatomic) BOOL isReadyToShow;
 
 @property (nonatomic, weak) id<KonoPageWebViewDelegate> pageDelegate;
