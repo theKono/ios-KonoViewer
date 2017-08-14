@@ -14,6 +14,7 @@
 		E83AA8821F27337F00D44997 /* KonoPageWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E83AA8801F27337F00D44997 /* KonoPageWebView.m */; };
 		E83AA8891F273FF600D44997 /* KonoContentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83AA8881F273FF600D44997 /* KonoContentKit.framework */; };
 		E8E901201F3869AA006EDCF5 /* KonoPDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E9011F1F3869AA006EDCF5 /* KonoPDFView.m */; };
+		E8E901241F418D5F006EDCF5 /* KonoFitreadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E901231F418D5F006EDCF5 /* KonoFitreadingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +47,9 @@
 		E8E9011E1F3869AA006EDCF5 /* KonoPDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonoPDFView.h; sourceTree = "<group>"; };
 		E8E9011F1F3869AA006EDCF5 /* KonoPDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KonoPDFView.m; sourceTree = "<group>"; };
 		E8E901211F3879A9006EDCF5 /* KonoPDFView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KonoPDFView.xib; sourceTree = "<group>"; };
+		E8E901221F418D5F006EDCF5 /* KonoFitreadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonoFitreadingView.h; sourceTree = "<group>"; };
+		E8E901231F418D5F006EDCF5 /* KonoFitreadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KonoFitreadingView.m; sourceTree = "<group>"; };
+		E8E901251F418D79006EDCF5 /* KonoFitreadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KonoFitreadingView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,9 @@
 				E8E9011E1F3869AA006EDCF5 /* KonoPDFView.h */,
 				E8E9011F1F3869AA006EDCF5 /* KonoPDFView.m */,
 				E8E901211F3879A9006EDCF5 /* KonoPDFView.xib */,
+				E8E901221F418D5F006EDCF5 /* KonoFitreadingView.h */,
+				E8E901231F418D5F006EDCF5 /* KonoFitreadingView.m */,
+				E8E901251F418D79006EDCF5 /* KonoFitreadingView.xib */,
 				E83AA8771F25F60200D44997 /* KonoPDFViewController.h */,
 				E83AA8781F25F60200D44997 /* KonoPDFViewController.m */,
 				E83AA8791F25F60200D44997 /* KonoPDFViewController.xib */,
@@ -172,6 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8E901241F418D5F006EDCF5 /* KonoFitreadingView.m in Sources */,
 				E83AA8811F27337F00D44997 /* KonoFatPageWebView.m in Sources */,
 				E83AA8821F27337F00D44997 /* KonoPageWebView.m in Sources */,
 				E8E901201F3869AA006EDCF5 /* KonoPDFView.m in Sources */,
