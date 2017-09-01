@@ -19,8 +19,8 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="48" id="a0a-AD-1dx"/>
                     </constraints>
-                    <state key="normal" image="btn_article_back_normal"/>
-                    <state key="highlighted" image="btn_article_back_pressed"/>
+                    <state key="normal" image="btn_back_normal"/>
+                    <state key="highlighted" image="btn_back_pressed"/>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -37,7 +37,7 @@
         </view>
     </objects>
     <resources>
-        <image name="btn_article_back_normal" width="48" height="48"/>
-        <image name="btn_article_back_pressed" width="48" height="48"/>
+        <image name="btn_back_normal" width="48" height="48"/>
+        <image name="btn_back_pressed" width="48" height="48"/>
     </resources>
 </document>
