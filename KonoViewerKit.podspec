@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "KonoViewerKit"
-  s.version      = "0.2"
+  s.version      = "0.3"
   s.summary      = "Viewer SDK based on Kono AYCR project."
 
   # This description is used to generate tags and improve search results.
@@ -77,8 +77,8 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-#s.source       = { :git => "https://github.com/theKono/ios-KonoViewer.git" }
-  s.source       = { :git => "https://github.com/theKono/ios-KonoViewer.git", :branch => "development" }
+  s.source       = { :git => "https://github.com/theKono/ios-KonoViewer.git" }
+#s.source       = { :git => "https://github.com/theKono/ios-KonoViewer.git", :branch => "development" }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
