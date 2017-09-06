@@ -11,6 +11,8 @@
 
 @protocol KonoPDFViewDatasource <NSObject>
 
+- (BOOL)isLeftFlip;
+
 - (NSString*)htmlFilePathForItemAtIndex:(NSInteger)index isPreload:(BOOL)isPreload;
 
 - (NSInteger)numberOfPages;
@@ -23,6 +25,14 @@
 
 @optional
 
+- (void)PDFViewStartMoving;
+
+- (void)PDFViewTapped;
+
+- (void)PDFViewZoomin;
+
+- (void)PDFViewZoomReset;
+
 
 @end
 
@@ -34,7 +44,9 @@
 
 @property (nonatomic, weak) id<KonoPDFViewDelegate> delegate;
 
-- (void)initViewContainer;
+@property (nonatomic) BOOL isLeftFlip;
+
+- (void)initViewContainerAtPageIdx:(NSInteger)initialPage;
 
 - (void)reloadPageIndex:(NSInteger)index withFilePath:(NSString *)htmlFilePath;
 

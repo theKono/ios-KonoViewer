@@ -57,7 +57,7 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
 }
 
 
-- (void)initViewContainer {
+- (void)initViewContainerAtPageIdx:(NSInteger)initialPage {
     
     UICollectionViewFlowLayout *colFlowLayout = [[UICollectionViewFlowLayout alloc] init];
     colFlowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -73,11 +73,37 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     [self.viewContainer setBackgroundColor:[UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1.0]];
     [self.viewContainer registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:contentCellIdentifier];
     [self.viewContainer setBackgroundColor:[UIColor colorWithRed:0.933 green:0.914 blue:0.878 alpha:1.0]];
+    
+    [self.viewContainer scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:[self getPageIndex:initialPage] inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+    
+    
 }
 
 - (void)initLayout {
     
     
+}
+
+
+- (BOOL)isLeftFlip {
+    
+    return [self.dataSource isLeftFlip];
+}
+
+# pragma mark - content related utility function
+
+- (NSInteger)getPageIndex:(NSInteger)containerIdx {
+    
+    NSInteger pageIdx = 0;
+    
+    if (!self.isLeftFlip) {
+        pageIdx = [self.dataSource numberOfPages] - containerIdx - 1;
+    }
+    else {
+        pageIdx = containerIdx;
+    }
+    
+    return pageIdx;
 }
 
 # pragma mark - webview object resource related function
@@ -158,8 +184,8 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     }
     
     
-    [self.dataSource htmlFilePathForItemAtIndex:indexPath.row isPreload:NO];
-
+    [self.dataSource htmlFilePathForItemAtIndex:[self getPageIndex:indexPath.row] isPreload:NO];
+    
     
     return cell;
 }
@@ -182,7 +208,7 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     KonoPageWebView *webview = [self getResuableWebviewForIndex:indexPath.row];
     
     
-    NSString *filePath = [self.dataSource htmlFilePathForItemAtIndex:indexPath.row isPreload:NO];
+    NSString *filePath = [self.dataSource htmlFilePathForItemAtIndex:[self getPageIndex:indexPath.row] isPreload:NO];
     
     if (filePath) {
         [self loadHTMLFileWithWebview:webview withHTMLFileDirPath:filePath];
@@ -237,13 +263,13 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     NSInteger rightIndex = MIN( [self.dataSource numberOfPages] - 1, index+1 );
     
     KonoPageWebView *leftWebview = [self getResuableWebviewForIndex:leftIndex];
-    NSString *leftFilePath = [self.dataSource htmlFilePathForItemAtIndex:leftIndex isPreload:YES];
+    NSString *leftFilePath = [self.dataSource htmlFilePathForItemAtIndex:[self getPageIndex:leftIndex] isPreload:YES];
     if (leftFilePath && leftIndex != index ) {
         [self loadHTMLFileWithWebview:leftWebview withHTMLFileDirPath:leftFilePath];
     }
     
     KonoPageWebView *rightWebview = [self getResuableWebviewForIndex:rightIndex];
-    NSString *rightFilePath = [self.dataSource htmlFilePathForItemAtIndex:rightIndex isPreload:YES];
+    NSString *rightFilePath = [self.dataSource htmlFilePathForItemAtIndex:[self getPageIndex:rightIndex] isPreload:YES];
     if (rightFilePath && rightIndex != index) {
         [self loadHTMLFileWithWebview:rightWebview withHTMLFileDirPath:rightFilePath];
     }
@@ -252,7 +278,7 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
 
 - (void)reloadPageIndex:(NSInteger)index withFilePath:(NSString *)htmlFilePath; {
     
-    KonoPageWebView *webview = [self getResuableWebviewForIndex:index];
+    KonoPageWebView *webview = [self getResuableWebviewForIndex:[self getPageIndex:index]];
     [self loadHTMLFileWithWebview:webview withHTMLFileDirPath:htmlFilePath];
     
 }
@@ -286,19 +312,33 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    
+    if( [self.delegate respondsToSelector:@selector(PDFViewStartMoving)]){
+        [self.delegate PDFViewStartMoving];
+    }
+    
+}
+
+
 #pragma mark - webview touch related delegate function
 
 - (void)userDidSingleTapOnView:(KonoPageWebView*)view {
-    NSLog(@"single tap on view");
+    if( [self.delegate respondsToSelector:@selector(PDFViewTapped)]){
+        [self.delegate PDFViewTapped];
+    }
 }
 
 - (void)userStartOperationOnView {
-    NSLog(@"user touch the webview");
+    if( [self.delegate respondsToSelector:@selector(PDFViewZoomin)]){
+        [self.delegate PDFViewZoomin];
+    }
 }
 
 - (void)userDoneOperationOnView {
-    NSLog(@"the webivew action is done");
-    
+    if( [self.delegate respondsToSelector:@selector(PDFViewZoomReset)]){
+        [self.delegate PDFViewZoomReset];
+    }
 }
 
 - (void)userClickInViewWithURL:(NSURL *)url {
