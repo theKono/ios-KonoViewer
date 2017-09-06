@@ -10,4 +10,7 @@
 
 @interface KonoViewerKit : NSObject
 
+- (void)testingSDK;
+
+
 @end

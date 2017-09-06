@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		E83AA84C1F1DAB3400D44997 /* KonoViewerKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E83AA84B1F1DAB3400D44997 /* KonoViewerKit.m */; };
 		E83AA84D1F1DAB3400D44997 /* KonoViewerKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E83AA84A1F1DAB3400D44997 /* KonoViewerKit.h */; };
+		E83AA87A1F25F60200D44997 /* KonoPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83AA8781F25F60200D44997 /* KonoPDFViewController.m */; };
+		E83AA8811F27337F00D44997 /* KonoFatPageWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E83AA87E1F27337F00D44997 /* KonoFatPageWebView.m */; };
+		E83AA8821F27337F00D44997 /* KonoPageWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E83AA8801F27337F00D44997 /* KonoPageWebView.m */; };
+		E83AA8891F273FF600D44997 /* KonoContentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83AA8881F273FF600D44997 /* KonoContentKit.framework */; };
+		E8E901201F3869AA006EDCF5 /* KonoPDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E9011F1F3869AA006EDCF5 /* KonoPDFView.m */; };
+		E8E901241F418D5F006EDCF5 /* KonoFitreadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E901231F418D5F006EDCF5 /* KonoFitreadingView.m */; };
+		E8E901281F594CC0006EDCF5 /* KonoNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E901271F594CC0006EDCF5 /* KonoNavigationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +35,26 @@
 		E83AA8471F1DAB3400D44997 /* libKonoViewerKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKonoViewerKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E83AA84A1F1DAB3400D44997 /* KonoViewerKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KonoViewerKit.h; sourceTree = "<group>"; };
 		E83AA84B1F1DAB3400D44997 /* KonoViewerKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KonoViewerKit.m; sourceTree = "<group>"; };
+		E83AA85D1F1F19C600D44997 /* Resource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resource; path = KonoViewerKit/Resource; sourceTree = "<group>"; };
+		E83AA8771F25F60200D44997 /* KonoPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonoPDFViewController.h; sourceTree = "<group>"; };
+		E83AA8781F25F60200D44997 /* KonoPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KonoPDFViewController.m; sourceTree = "<group>"; };
+		E83AA8791F25F60200D44997 /* KonoPDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KonoPDFViewController.xib; sourceTree = "<group>"; };
+		E83AA87D1F27337F00D44997 /* KonoFatPageWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonoFatPageWebView.h; sourceTree = "<group>"; };
+		E83AA87E1F27337F00D44997 /* KonoFatPageWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KonoFatPageWebView.m; sourceTree = "<group>"; };
+		E83AA87F1F27337F00D44997 /* KonoPageWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonoPageWebView.h; sourceTree = "<group>"; };
+		E83AA8801F27337F00D44997 /* KonoPageWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KonoPageWebView.m; sourceTree = "<group>"; };
+		E83AA8881F273FF600D44997 /* KonoContentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KonoContentKit.framework; path = KonoViewerKit/KonoContentKit.framework; sourceTree = "<group>"; };
+		E83AA88B1F27460800D44997 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		E8E9011E1F3869AA006EDCF5 /* KonoPDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonoPDFView.h; sourceTree = "<group>"; };
+		E8E9011F1F3869AA006EDCF5 /* KonoPDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KonoPDFView.m; sourceTree = "<group>"; };
+		E8E901211F3879A9006EDCF5 /* KonoPDFView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KonoPDFView.xib; sourceTree = "<group>"; };
+		E8E901221F418D5F006EDCF5 /* KonoFitreadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonoFitreadingView.h; sourceTree = "<group>"; };
+		E8E901231F418D5F006EDCF5 /* KonoFitreadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KonoFitreadingView.m; sourceTree = "<group>"; };
+		E8E901251F418D79006EDCF5 /* KonoFitreadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KonoFitreadingView.xib; sourceTree = "<group>"; };
+		E8E901261F594CC0006EDCF5 /* KonoNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonoNavigationView.h; sourceTree = "<group>"; };
+		E8E901271F594CC0006EDCF5 /* KonoNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KonoNavigationView.m; sourceTree = "<group>"; };
+		E8E9012B1F595491006EDCF5 /* KonoNavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KonoNavigationView.xib; sourceTree = "<group>"; };
+		E8E9012C1F59578F006EDCF5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E83AA8891F273FF600D44997 /* KonoContentKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,8 +72,10 @@
 		E83AA83E1F1DAB3400D44997 = {
 			isa = PBXGroup;
 			children = (
+				E83AA85D1F1F19C600D44997 /* Resource */,
 				E83AA8491F1DAB3400D44997 /* KonoViewerKit */,
 				E83AA8481F1DAB3400D44997 /* Products */,
+				E83AA88A1F27417700D44997 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,10 +90,44 @@
 		E83AA8491F1DAB3400D44997 /* KonoViewerKit */ = {
 			isa = PBXGroup;
 			children = (
+				E83AA8531F1DCC2E00D44997 /* BasicComponent */,
+				E8E901261F594CC0006EDCF5 /* KonoNavigationView.h */,
+				E8E901271F594CC0006EDCF5 /* KonoNavigationView.m */,
+				E8E9012B1F595491006EDCF5 /* KonoNavigationView.xib */,
+				E8E9011E1F3869AA006EDCF5 /* KonoPDFView.h */,
+				E8E9011F1F3869AA006EDCF5 /* KonoPDFView.m */,
+				E8E901211F3879A9006EDCF5 /* KonoPDFView.xib */,
+				E8E901221F418D5F006EDCF5 /* KonoFitreadingView.h */,
+				E8E901231F418D5F006EDCF5 /* KonoFitreadingView.m */,
+				E8E901251F418D79006EDCF5 /* KonoFitreadingView.xib */,
+				E83AA8771F25F60200D44997 /* KonoPDFViewController.h */,
+				E83AA8781F25F60200D44997 /* KonoPDFViewController.m */,
+				E83AA8791F25F60200D44997 /* KonoPDFViewController.xib */,
 				E83AA84A1F1DAB3400D44997 /* KonoViewerKit.h */,
 				E83AA84B1F1DAB3400D44997 /* KonoViewerKit.m */,
+				E8E9012C1F59578F006EDCF5 /* Images.xcassets */,
 			);
 			path = KonoViewerKit;
+			sourceTree = "<group>";
+		};
+		E83AA8531F1DCC2E00D44997 /* BasicComponent */ = {
+			isa = PBXGroup;
+			children = (
+				E83AA87D1F27337F00D44997 /* KonoFatPageWebView.h */,
+				E83AA87E1F27337F00D44997 /* KonoFatPageWebView.m */,
+				E83AA87F1F27337F00D44997 /* KonoPageWebView.h */,
+				E83AA8801F27337F00D44997 /* KonoPageWebView.m */,
+			);
+			name = BasicComponent;
+			sourceTree = "<group>";
+		};
+		E83AA88A1F27417700D44997 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E83AA88B1F27460800D44997 /* libz.tbd */,
+				E83AA8881F273FF600D44997 /* KonoContentKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +188,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8E901241F418D5F006EDCF5 /* KonoFitreadingView.m in Sources */,
+				E8E901281F594CC0006EDCF5 /* KonoNavigationView.m in Sources */,
+				E83AA8811F27337F00D44997 /* KonoFatPageWebView.m in Sources */,
+				E83AA8821F27337F00D44997 /* KonoPageWebView.m in Sources */,
+				E8E901201F3869AA006EDCF5 /* KonoPDFView.m in Sources */,
+				E83AA87A1F25F60200D44997 /* KonoPDFViewController.m in Sources */,
 				E83AA84C1F1DAB3400D44997 /* KonoViewerKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,7 +242,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -214,7 +284,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -225,6 +295,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = KSFL9L3S98;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KonoViewerKit",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -235,6 +309,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = KSFL9L3S98;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KonoViewerKit",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -260,6 +338,7 @@
 				E83AA8521F1DAB3400D44997 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
