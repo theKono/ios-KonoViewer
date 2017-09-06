@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 
+@property (nonatomic, strong) KCBook *bookItem;
+
 @end
 
 @implementation KonoFitreadingView
@@ -47,6 +49,11 @@
     return self;
 }
 
+- (KCBook *)bookItem {
+    
+    return [self.dataSource displayBookItem];
+}
+
 - (void)loadTemplate {
     
     
@@ -64,35 +71,35 @@
     
     
     
-        NSError* error;
-        NSData *parsedData;
+    NSError* error;
+    NSData *parsedData;
+    
+    if( self.bookItem != nil ){
         
-        if( self.bookItem != nil ){
-            
-            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            
-            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:json];
-            [dic setObject:self.bookItem.name forKey:@"magTitle"];
-            [dic setObject:self.bookItem.issue forKey:@"magIssue"];
-            
-            parsedData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:&error];
-            
-        }
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         
-        NSString *myString = [[NSString alloc] initWithData:parsedData encoding:NSUTF8StringEncoding];
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:json];
+        [dic setObject:self.bookItem.name forKey:@"magTitle"];
+        [dic setObject:self.bookItem.issue forKey:@"magIssue"];
         
-        [self stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat: @"setAPIURL('%@')", [KCServerConfig getApiBaseURL]]];
+        parsedData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:&error];
         
-        [self stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat: @"setDeviceType(%d)", 0 ]];
-        
-        /* set the second parameter to indicate this is an online article or not */
-        /* also set the base_url for images on the third parameter */
-        NSString *articleImageRefURL = imagePath!=nil?imagePath:[KCServerConfig getApiBaseURL];
-        
-        [self stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat: @"open_article(%@, %d, '%@')", myString , imagePath==nil , articleImageRefURL ]];
-        //[self adjustDefaultFontSize];
-        
-        //[self loadMagazineInfo];
+    }
+    
+    NSString *myString = [[NSString alloc] initWithData:parsedData encoding:NSUTF8StringEncoding];
+    
+    [self stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat: @"setAPIURL('%@')", [KCServerConfig getApiBaseURL]]];
+    
+    [self stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat: @"setDeviceType(%d)", 0 ]];
+    
+    /* set the second parameter to indicate this is an online article or not */
+    /* also set the base_url for images on the third parameter */
+    NSString *articleImageRefURL = imagePath!=nil?imagePath:[KCServerConfig getApiBaseURL];
+    
+    [self stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat: @"open_article(%@, %d, '%@')", myString , imagePath==nil , articleImageRefURL ]];
+    //[self adjustDefaultFontSize];
+    
+    //[self loadMagazineInfo];
     
 }
 
@@ -121,9 +128,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     
-    NSString *requestString = [[[request URL] absoluteString] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
     
-
     /* template finish loading */
     if( [request.URL.scheme isEqualToString:@"konoviewer"] && [request.URL.host isEqualToString:@"template_load_finished"]){
         

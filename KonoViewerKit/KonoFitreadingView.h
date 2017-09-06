@@ -10,9 +10,16 @@
 
 @protocol KonoFitreadingViewDelegate <NSObject>
 
+- (KCBook *)displayBookItem;
+
 - (void)userDidClickOnContent;
 
-@optional
+@end
+
+
+@protocol KonoFitreadingViewDatasource <NSObject>
+
+- (KCBook *)displayBookItem;
 
 @end
 
@@ -22,9 +29,8 @@
 
 @property (nonatomic, weak) id<KonoFitreadingViewDelegate> actionDelegate;
 
-@property (nonatomic, strong) KCBook *bookItem;
+@property (nonatomic, weak) id<KonoFitreadingViewDatasource> dataSource;
 
-@property (nonatomic, strong) KCBookArticle *articleItem;
 
 
 - (void)renderFitreadingArticleFromData:(NSData*)data withImageRefPath:(NSString*)imagePath requireKey:(BOOL)requireKey;
