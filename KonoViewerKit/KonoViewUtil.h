@@ -10,7 +10,9 @@
 
 @interface KonoViewUtil : NSObject
 
-+ (NSBundle *)viewerBundle;
++ (NSBundle *)viewcontrollerBundle;
+
++ (NSBundle *)resourceBundle;
 
 + (void)loadSampleJson;
 

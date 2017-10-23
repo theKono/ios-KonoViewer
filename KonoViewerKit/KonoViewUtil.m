@@ -10,7 +10,16 @@
 
 @implementation KonoViewUtil
 
-+ (NSBundle *)viewerBundle {
++ (NSBundle *)viewcontrollerBundle {
+    
+    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"KonoViewerKitVC" ofType:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+    
+    return bundle;
+    
+}
+
++ (NSBundle *)resourceBundle {
     
     NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"KonoViewerKit" ofType:@"bundle"];
     NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
@@ -22,13 +31,13 @@
 
 + (void)loadSampleJson {
     
-    NSString *templateFileName = [[self viewerBundle] pathForResource:@"article_sample"
+    NSString *templateFileName = [[self resourceBundle] pathForResource:@"article_sample"
                                                                  ofType:@"json"];
     
     NSData *data = [NSData dataWithContentsOfFile:templateFileName];
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     
-    NSString *cssFilePath = [[self viewerBundle] pathForResource:@"article_sample"
+    NSString *cssFilePath = [[self resourceBundle] pathForResource:@"article_sample"
                                                           ofType:@"css"];
     
     
@@ -43,7 +52,14 @@
     NSArray *sectionArray = [articleDic objectForKey:@"sections"];
     NSString *articleContent = [self renderSections:sectionArray];
     
-    customizeCSS = [NSString stringWithContentsOfFile:cssFilePath encoding:NSUTF8StringEncoding error:nil];
+    if (cssFilePath) {
+        customizeCSS = [NSString stringWithContentsOfFile:cssFilePath encoding:NSUTF8StringEncoding error:nil];
+    }
+    else {
+        NSString *defaultCSSFilePath = [[self resourceBundle] pathForResource:@"article_sample"
+                                                                               ofType:@"css"];
+        customizeCSS = [NSString stringWithContentsOfFile:defaultCSSFilePath encoding:NSUTF8StringEncoding error:nil];
+    }
     
     htmlString = [NSString stringWithFormat:@"<!DOCTYPE html><head><meta charset=\"utf-8\"><meta content=\"\" name=\"description\"><meta content=\"width=device-width\" name=\"viewport\"><style>%@</style></head><body><div class=\"container\" id=\"template-body\">%@ %@</div></body></html>",customizeCSS,articleHeader,articleContent] ;
     
@@ -56,7 +72,7 @@
     
     NSMutableString *headerHTMLString;
     
-    NSString *templateFileName = [[self viewerBundle] pathForResource:@"articleHeaderTemplate"
+    NSString *templateFileName = [[self resourceBundle] pathForResource:@"articleHeaderTemplate"
                                                                  ofType:@"html"];
     NSMutableString *articleTemplate = [NSMutableString stringWithContentsOfFile:templateFileName
                                                                         encoding:NSUTF8StringEncoding
