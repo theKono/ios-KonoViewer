@@ -61,7 +61,7 @@
         customizeCSS = [NSString stringWithContentsOfFile:defaultCSSFilePath encoding:NSUTF8StringEncoding error:nil];
     }
     
-    htmlString = [NSString stringWithFormat:@"<!DOCTYPE html><head><meta charset=\"utf-8\"><meta content=\"\" name=\"description\"><meta content=\"width=device-width\" name=\"viewport\"><style>%@</style></head><body><div class=\"container\" id=\"template-body\">%@ %@</div></body></html>",customizeCSS,articleHeader,articleContent] ;
+    htmlString = [NSString stringWithFormat:@"<!DOCTYPE html><head><meta charset=\"utf-8\"><meta content=\"\" name=\"description\"><meta content=\"width=device-width\" name=\"viewport\"><style>%@</style></head><body><div class=\"container\" id=\"template-body\">%@ %@</div></body><script  src=\"jquery.js\"></script><script  src=\"main.js\"></script></html>",customizeCSS,articleHeader,articleContent] ;
     
     NSLog(@"HTML result\n:%@",htmlString);
     
