@@ -32,20 +32,19 @@
     
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame isUseDefaultLayout:(BOOL)isUseDefault{
     
     self = [super initWithFrame:frame];
     if (self) {
         
-        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"KonoViewerKitVC" ofType:@"bundle"];
-        NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
-        
-        NSArray* nibViews = [bundle loadNibNamed:@"KonoFitreadingView" owner:self options:nil];
+        NSArray* nibViews = [[KonoViewUtil viewcontrollerBundle] loadNibNamed:@"KonoFitreadingView" owner:self options:nil];
         UIView* mainView = (UIView*)[nibViews objectAtIndex:0];
         
         self = (KonoFitreadingView *)mainView;
     }
-    [self loadTemplate];
+    if (isUseDefault) {
+        [self loadTemplate];
+    }
     return self;
 }
 
@@ -55,12 +54,9 @@
 }
 
 - (void)loadTemplate {
+
     
-    
-    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"KonoViewerKit" ofType:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
-    
-    NSURL *url = [NSURL fileURLWithPath:[bundle pathForResource:@"index" ofType:@"html" inDirectory:@"dist"]];
+    NSURL *url = [NSURL fileURLWithPath:[[KonoViewUtil resourceBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"dist"]];
     [self loadRequest:[NSURLRequest requestWithURL:url]];
 
     

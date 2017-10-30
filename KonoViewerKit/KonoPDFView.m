@@ -37,10 +37,7 @@ static NSString *contentCellIdentifier = @"contentCellIdentifier";
     self = [super initWithFrame:frame];
     if (self) {
         
-        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"KonoViewerKitVC" ofType:@"bundle"];
-        NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
-        
-        NSArray* nibViews = [bundle loadNibNamed:@"KonoPDFView" owner:self options:nil];
+        NSArray* nibViews = [[KonoViewUtil viewcontrollerBundle] loadNibNamed:@"KonoPDFView" owner:self options:nil];
         UIView* mainView = (UIView*)[nibViews objectAtIndex:0];
         
         self = (KonoPDFView *)mainView;

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "KonoViewerKit"
-  s.version      = "0.3"
+  s.version      = "0.4"
   s.summary      = "Viewer SDK based on Kono AYCR project."
 
   # This description is used to generate tags and improve search results.
@@ -103,7 +103,7 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-  s.resources = "KonoViewerKit/**/*.{html,css,js,xib}"
+  #s.resources = "KonoViewerKit/**/*.{html,css,js,xib}"
   s.resource_bundles = { "KonoViewerKit" => "KonoViewerKit/Resource/*",
                          "KonoViewerKitVC" => "KonoViewerKit/**/*.{xib,xcassets}" } 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
