@@ -8,6 +8,17 @@
 
 #import "KonoViewUtil.h"
 
+@interface KonoHTMLGenerator : NSObject
+
+@property (nonatomic) NSInteger sentenceCount;
+@property (nonatomic) NSInteger imageCount;
+
+- (NSString *)getHTMLTemplateFromArticleDic:(NSDictionary *)articleDic withCSS:(NSString *)cssString;
+
+@end
+
+
+
 @implementation KonoViewUtil
 
 + (NSBundle *)viewcontrollerBundle {
@@ -38,7 +49,7 @@
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     
     NSString *cssFilePath = [[self resourceBundle] pathForResource:@"article_sample"
-                                                          ofType:@"css"];
+                                                            ofType:@"css"];
     
     
     [self getHTMLTemplateFromArticleDic:json withCSSFilePath:cssFilePath];
@@ -46,34 +57,52 @@
 
 + (NSString *)getHTMLTemplateFromArticleDic:(NSDictionary *)articleDic withCSSFilePath:(NSString *)cssFilePath{
     
+    KonoHTMLGenerator *defaultGenerator = [KonoHTMLGenerator new];
     NSString *htmlString;
     NSString *customizeCSS;
-    NSString *articleHeader = [self renderHeader:articleDic];
-    NSArray *sectionArray = [articleDic objectForKey:@"sections"];
-    NSString *articleContent = [self renderSections:sectionArray];
     
     if (cssFilePath) {
         customizeCSS = [NSString stringWithContentsOfFile:cssFilePath encoding:NSUTF8StringEncoding error:nil];
     }
     else {
         NSString *defaultCSSFilePath = [[self resourceBundle] pathForResource:@"article_sample"
-                                                                               ofType:@"css"];
+                                                                       ofType:@"css"];
         customizeCSS = [NSString stringWithContentsOfFile:defaultCSSFilePath encoding:NSUTF8StringEncoding error:nil];
     }
     
-    htmlString = [NSString stringWithFormat:@"<!DOCTYPE html><head><meta charset=\"utf-8\"><meta content=\"\" name=\"description\"><meta content=\"width=device-width\" name=\"viewport\"><style>%@</style></head><body><div class=\"container\" id=\"template-body\">%@ %@</div></body><script  src=\"jquery.js\"></script><script  src=\"main.js\"></script></html>",customizeCSS,articleHeader,articleContent] ;
+    htmlString = [defaultGenerator getHTMLTemplateFromArticleDic:articleDic withCSS:customizeCSS];
     
-    NSLog(@"HTML result\n:%@",htmlString);
     
     return htmlString;
 }
 
-+ (NSString *)renderHeader:(NSDictionary *)articleDic {
+@end
+
+
+@implementation KonoHTMLGenerator
+
+
+- (NSString *)getHTMLTemplateFromArticleDic:(NSDictionary *)articleDic withCSS:(NSString *)cssString{
+    
+    NSString *htmlString;
+    
+    NSString *articleHeader = [self renderHeader:articleDic];
+    NSArray *sectionArray = [articleDic objectForKey:@"sections"];
+    NSString *articleContent = [self renderSections:sectionArray];
+    
+    htmlString = [NSString stringWithFormat:@"<!DOCTYPE html><head><meta charset=\"utf-8\"><meta content=\"\" name=\"description\"><meta content=\"width=device-width\" name=\"viewport\"><style>%@</style></head><body><div class=\"container\" id=\"template-body\">%@ %@</div></body><script  src=\"jquery.js\"></script><script  src=\"main.js\"></script></html>",cssString,articleHeader,articleContent] ;
+    
+    
+    
+    return htmlString;
+}
+
+- (NSString *)renderHeader:(NSDictionary *)articleDic {
     
     NSMutableString *headerHTMLString;
     
-    NSString *templateFileName = [[self resourceBundle] pathForResource:@"articleHeaderTemplate"
-                                                                 ofType:@"html"];
+    NSString *templateFileName = [[KonoViewUtil resourceBundle] pathForResource:@"articleHeaderTemplate"
+                                                                         ofType:@"html"];
     NSMutableString *articleTemplate = [NSMutableString stringWithContentsOfFile:templateFileName
                                                                         encoding:NSUTF8StringEncoding
                                                                            error:NULL];
@@ -98,7 +127,7 @@
     return headerHTMLString;
 }
 
-+ (NSString *)renderSections:(NSArray *)sectionsArray {
+- (NSString *)renderSections:(NSArray *)sectionsArray {
     
     NSString *htmlString = [NSString new];
     
@@ -112,7 +141,7 @@
     return htmlString;
 }
 
-+ (NSString *)renderSectionImages:(NSArray *)imagesArray {
+- (NSString *)renderSectionImages:(NSArray *)imagesArray {
     
     NSString *sectionImageHTMLString = [NSString new];
     
@@ -125,7 +154,7 @@
     return sectionImageHTMLString;
 }
 
-+ (NSString *)renderParagraphs:(NSArray *)paragraphesArray {
+- (NSString *)renderParagraphs:(NSArray *)paragraphesArray {
     
     NSString *paragraphHTMLString = [NSString new];
     
@@ -141,14 +170,15 @@
     return paragraphHTMLString;
 }
 
-+ (NSString *)renderContent:(NSString *)contentString {
+- (NSString *)renderContent:(NSString *)contentString {
+    
     
     NSString *contentHTMLString = [NSString stringWithFormat:@"<div class=\"content-text\">%@</div>",contentString];
     
     return contentHTMLString;
 }
 
-+ (NSString *)renderParagraphImages:(NSArray *)imagesArray {
+- (NSString *)renderParagraphImages:(NSArray *)imagesArray {
     
     NSString *paragraphImageHTMLString = [NSString new];
     
@@ -161,7 +191,7 @@
     return paragraphImageHTMLString;
 }
 
-+ (NSString *)renderAudio:(NSArray *)audiosArray {
+- (NSString *)renderAudio:(NSArray *)audiosArray {
     
     NSString *audioHTMLString = [NSString new];
     
@@ -176,7 +206,7 @@
     return audioHTMLString;
 }
 
-+ (NSString *)renderVideo:(NSArray *)videosArray {
+- (NSString *)renderVideo:(NSArray *)videosArray {
     
     NSString *videoHTMLString = [NSString new];
     
