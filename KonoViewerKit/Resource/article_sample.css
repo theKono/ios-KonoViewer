@@ -1225,4 +1225,7 @@ body {
 #loading-indicator {
     margin: 50%
 }
-
+.highlightBlock {
+    background-color: yellow;
+    color: red;
+}
