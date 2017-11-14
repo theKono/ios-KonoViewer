@@ -172,8 +172,10 @@
 
 - (NSString *)renderContent:(NSString *)contentString {
     
+    NSString *contentHTMLString;
+    NSString *taggedHTMLString = [self addTagBySentence:contentString];
     
-    NSString *contentHTMLString = [NSString stringWithFormat:@"<div class=\"content-text\">%@</div>",contentString];
+    contentHTMLString = [NSString stringWithFormat:@"<div class=\"content-text\">%@</div>",taggedHTMLString];
     
     return contentHTMLString;
 }
@@ -228,5 +230,21 @@
     return videoHTMLString;
 }
 
+- (NSString *)addTagBySentence:(NSString *)contentString {
+    
+    NSArray *sentencesArray = [contentString componentsSeparatedByString:@"。"];
+    NSString *taggedString = [NSString new];
+    
+    for (NSString *sentence in sentencesArray) {
+        
+        if ([sentence length] > 0 ) {
+            NSString *tagID = [NSString stringWithFormat:@"<span id='sentence-%ld'>",(long)self.sentenceCount];
+            taggedString = [taggedString stringByAppendingString:[NSString stringWithFormat:@"%@ %@ </span>",tagID,sentence]];
+            self.sentenceCount++;
+        }
+    }
+    return taggedString;
+}
 
 @end
+
