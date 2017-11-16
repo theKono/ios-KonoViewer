@@ -17,6 +17,10 @@
 
 @end
 
+@implementation ArticleHTMLInfo
+
+@end
+
 
 
 @implementation KonoViewUtil
@@ -55,9 +59,10 @@
     [self getHTMLTemplateFromArticleDic:json withCSSFilePath:cssFilePath];
 }
 
-+ (NSString *)getHTMLTemplateFromArticleDic:(NSDictionary *)articleDic withCSSFilePath:(NSString *)cssFilePath{
++ (ArticleHTMLInfo *)getHTMLTemplateFromArticleDic:(NSDictionary *)articleDic withCSSFilePath:(NSString *)cssFilePath{
     
     KonoHTMLGenerator *defaultGenerator = [KonoHTMLGenerator new];
+    ArticleHTMLInfo *parsedArticleInfo = [ArticleHTMLInfo new];
     NSString *htmlString;
     NSString *customizeCSS;
     
@@ -71,9 +76,10 @@
     }
     
     htmlString = [defaultGenerator getHTMLTemplateFromArticleDic:articleDic withCSS:customizeCSS];
+    parsedArticleInfo.htmlString = htmlString;
+    parsedArticleInfo.totalSentenceCount = defaultGenerator.sentenceCount;
     
-    
-    return htmlString;
+    return parsedArticleInfo;
 }
 
 @end

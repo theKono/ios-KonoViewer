@@ -8,6 +8,15 @@
 #import <KonoContentKit/KonoContentKit.h>
 #import <Foundation/Foundation.h>
 
+@interface ArticleHTMLInfo : NSObject
+
+@property (nonatomic, copy) NSString *htmlString;
+@property (nonatomic) NSInteger totalSentenceCount;
+@property (nonatomic) NSInteger totalImageCount;
+
+@end
+
+
 @interface KonoViewUtil : NSObject
 
 + (NSBundle *)viewcontrollerBundle;
@@ -16,7 +25,8 @@
 
 + (void)loadSampleJson;
 
-+ (NSString *)getHTMLTemplateFromArticleDic:(NSDictionary *)articleDic withCSSFilePath:(NSString *)cssFilePath;
++ (ArticleHTMLInfo *)getHTMLTemplateFromArticleDic:(NSDictionary *)articleDic withCSSFilePath:(NSString *)cssFilePath;
 
 
 @end
+
