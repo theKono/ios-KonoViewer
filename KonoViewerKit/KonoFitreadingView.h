@@ -11,9 +11,13 @@
 
 @protocol KonoFitreadingViewDelegate <NSObject>
 
-- (KCBook *)displayBookItem;
-
 - (void)userDidClickOnContent;
+
+@optional
+
+- (void)firstMenuItemAction;
+
+- (void)secondMenuItemAction;
 
 @end
 
@@ -33,6 +37,8 @@
 @property (nonatomic, weak) id<KonoFitreadingViewDatasource> dataSource;
 
 @property (nonatomic) BOOL isUseKonoDefaultLayout;
+
+- (void)setUpActionMenu;
 
 - (void)renderFitreadingArticleFromData:(NSData*)data withImageRefPath:(NSString*)imagePath requireKey:(BOOL)requireKey;
 

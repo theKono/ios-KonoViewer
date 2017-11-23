@@ -37,3 +37,12 @@ function scrollSentenceToMiddle(sentenceID) {
     var speed = 800;
     $('html, body').animate({scrollTop:moveOffset}, speed);
 }
+
+function highlightSelectedTextSection() {
+    
+    var selectedTextObj = $(window.getSelection().focusNode).parent();
+    removeHighLight();
+    selectedTextObj.addClass('highlightBlock');
+    return selectedTextObj.attr('id');
+}
+

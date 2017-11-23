@@ -45,8 +45,24 @@
     if (isUseDefault) {
         [self loadTemplate];
     }
+    
     return self;
 }
+
+- (void)setUpActionMenu {
+    
+    UIMenuItem *customMenuItem1 = [[UIMenuItem alloc] initWithTitle:@"Speak" action:@selector(customAction1:)];
+    UIMenuItem *customMenuItem2 = [[UIMenuItem alloc] initWithTitle:@"Quiz" action:@selector(customAction2:)];
+    [[UIMenuController sharedMenuController] setMenuItems:[NSArray arrayWithObjects:customMenuItem1, customMenuItem2, nil]];
+    
+}
+
+- (void)dealloc {
+    
+    [[UIMenuController sharedMenuController] setMenuItems:nil];
+    
+}
+
 
 - (KCBook *)bookItem {
     
@@ -54,11 +70,10 @@
 }
 
 - (void)loadTemplate {
-
+    
     
     NSURL *url = [NSURL fileURLWithPath:[[KonoViewUtil resourceBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"dist"]];
     [self loadRequest:[NSURLRequest requestWithURL:url]];
-
     
     
 }
@@ -98,6 +113,48 @@
     //[self loadMagazineInfo];
     
 }
+
+- (void)clearSelection {
+    
+    self.userInteractionEnabled = NO;
+    self.userInteractionEnabled = YES;
+    
+}
+
+# pragma mark - override the UIMenuItem
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    
+    if (action == @selector(customAction1:)) {
+        return YES;
+    }
+    else if (action == @selector(customAction2:)) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+# pragma mark - UIMenuItem handler
+
+- (void)customAction1:(id)sender {
+    
+    if( [self.actionDelegate respondsToSelector:@selector(firstMenuItemAction)]){
+        [self.actionDelegate firstMenuItemAction];
+    }
+    [self clearSelection];
+    
+}
+
+- (void)customAction2:(id)sender {
+    
+    if( [self.actionDelegate respondsToSelector:@selector(secondMenuItemAction)]){
+        [self.actionDelegate secondMenuItemAction];
+    }
+    [self clearSelection];
+    
+}
+
 
 # pragma mark - user tap action handle related function
 
