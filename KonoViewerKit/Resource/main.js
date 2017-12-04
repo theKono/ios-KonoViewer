@@ -46,3 +46,22 @@ function highlightSelectedTextSection() {
     return selectedTextObj.attr('id');
 }
 
+function getHighlightSelectedObjID() {
+    
+    var selectedTextObj = $(window.getSelection().focusNode).parent();
+    return selectedTextObj.attr('id');
+}
+
+function removeTextInSentence(sentenceID,quizNo) {
+    
+    var objID = "#sentence-" + sentenceID;
+    var newID = "#quiz-" + quizNo;
+    
+    var targetObj = $(objID);
+    var originalText = targetObj.text();
+    targetObj.html( '<input type=\"text\" class=\"quiz\" id=" + newID + ">');
+    
+    return originalText;
+}
+
+

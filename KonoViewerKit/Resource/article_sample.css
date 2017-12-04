@@ -19,7 +19,6 @@ html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
 }
 body {
     margin: 0
@@ -1229,3 +1228,13 @@ body {
     background-color: yellow;
     color: red;
 }
+
+.quiz {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    background:transparent;
+}
+
